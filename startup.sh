@@ -1,9 +1,10 @@
 #!/bin/bash
 IMAGE="mysql:5.7"
-AWS_PROFILE="noah-lavagna-app:latest"
+AWS_PROFILE="noah-lavagna-web:"
 AWS_REGION="us-west-2"
 AWS_ACCOUNT_ID="644435390668" 
 AWS_SERVER=$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com"
+TAG="1"
 TAG_LATEST=$AWS_SERVER"/"$IMAGE":latest"
 echo $TAG_LATEST
 
@@ -17,10 +18,17 @@ push_image_to_ECR(){
 docker compose up
 }
 
-# aws_login
-docker-compose -p noah-lavagna build
-containers=$(docker images noah-lavagna* -q)
+#  aws_login
+
+# docker-compose -p noah-lavagna build
+
+containers=$(docker images noah-lavagna* )
+count=1
 for container in $containers
 do
-  echo "Container: $container"
+   
+#  docker tag $container $AWS_SERVER/$AWS_PROFILE$count
+#  docker push $AWS_SERVER/$AWS_PROFILE$count
+#   echo "Container: $container:lastest $AWS_SERVER/$AWS_PROFILE$count"
+((count+=1))
 done

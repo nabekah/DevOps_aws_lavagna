@@ -1,8 +1,8 @@
 #!/bin/bash
 IMAGE="mysql:5.7"
-AWS_PROFILE="noah-lavagna-web:"
-AWS_REGION="us-west-2"
-AWS_ACCOUNT_ID="644435390668" 
+AWS_PROFILE="myprofile-lavagna-web:"
+AWS_REGION="us-north-2"
+AWS_ACCOUNT_ID="000000000000" 
 AWS_SERVER=$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com"
 TAG="1"
 TAG_LATEST=$AWS_SERVER"/"$IMAGE":latest"
@@ -22,7 +22,7 @@ docker compose up
 
 # docker-compose -p noah-lavagna build
 
-containers=$(docker images noah-lavagna* )
+containers=$(docker images myprofile-lavagna* )
 count=1
 for container in $containers
 do
